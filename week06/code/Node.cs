@@ -9,20 +9,21 @@ public class Node
         this.Data = data;
     }
 
-    // Problem 1: Insert a value into the correct position
+    // Problem 1: Insert a value into the correct position (unique values only)
     public void Insert(int value)
     {
+        if (value == Data)
+            return; // ✅ Prevent duplicates (sorted set behavior)
+
         if (value < Data)
         {
-            // Insert to the left
             if (Left is null)
                 Left = new Node(value);
             else
                 Left.Insert(value);
         }
-        else
+        else // value > Data
         {
-            // Insert to the right
             if (Right is null)
                 Right = new Node(value);
             else
@@ -30,7 +31,7 @@ public class Node
         }
     }
 
-    // Problem 2: Check if the tree contains a given value
+    // Problem 2: Check if the tree contains a given value (recursive search)
     public bool Contains(int value)
     {
         if (value == Data)
